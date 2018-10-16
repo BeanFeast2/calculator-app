@@ -1,0 +1,22 @@
+#container{
+}
+
+#calculatorContainer{
+  position: relative;
+  top: 50px;
+  margin: auto;
+  background-color: #060610;
+  width: 500px;
+  height: 650px;
+  border-radius: 20px;
+}
+
+#display{
+  position: relative;
+  width: 475px;
+  height: 80px;
+  top: 14px;
+  margin: auto;
+  background-color: white;
+  border-radius: 20px;
+}
