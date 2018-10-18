@@ -1,11 +1,47 @@
-#container{
+body{
+  background-color: black;
+}
+
+.firstRow{
+  top: 26px;
+}
+
+.secondRow{
+  top: 33px;
+}
+
+.thirdRow{
+  top: 41px;
+}
+
+.fourthRow{
+  top: 47px;
+}
+
+.fifthRow{
+  top: 55px;
+}
+
+.row{
+  position: relative;
+  left: 14px;
+}
+
+.button{
+  height: 100px;
+  width: 115px;
+  border-radius: 20px;
+  vertical-align: top;
+  font-size: 60px;
+  color: #05fff3;
+  background-color: #002e2b;
 }
 
 #calculatorContainer{
   position: relative;
   top: 50px;
   margin: auto;
-  background-color: #060610;
+  background-color: #05fff3;
   width: 500px;
   height: 650px;
   border-radius: 20px;
@@ -17,6 +53,22 @@
   height: 80px;
   top: 14px;
   margin: auto;
-  background-color: white;
+  background-color: #002e2b;
   border-radius: 20px;
+}
+
+#nums{
+  color: #05fff3;
+  margin-right: 10px;
+  font-size: 70px;
+  float: right;
+}
+
+#zeroButton,
+#clearButton{
+  width: 233px;
+}
+
+#minusButton{
+  font-size: 80px;
 }
