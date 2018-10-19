@@ -77,3 +77,7 @@ body{
  #backArrow{
    margin-top: 14px;
  }
+
+ #display{
+   overflow: hidden;
+ }

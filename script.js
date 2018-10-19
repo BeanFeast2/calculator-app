@@ -33,49 +33,28 @@ function operate(operator, a, b){
 
 
 let buttons = document.querySelectorAll('button');
-let displayNum = document.getElementById('nums');
-let runningTotal = '';
-let firstNum = 0;
+let display = document.getElementById('nums');
+let runningNum = '';
+let runningTotal = 0;
 buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
-    let buttonContent = event.target.innerHTML;
-    let operator = '';
-    //if user clicks clear
-    if(buttonContent === 'Clear'){
-      displayNum.innerHTML = '';
-      runningTotal = '';
-      //if operator is clicked
-    }else if(buttonContent === '/' || buttonContent === 'x' || buttonContent === '-' || buttonContent === '+' || buttonContent === '=' ) {
-      if(firstNum === 0) {
-        firstNum = runningTotal;
-        runningTotal = '';
-      }
-      switch(buttonContent) {
-        case '/':
-          operator = '/';
-          displayNum.innerHTML = '';
-          break;
-        case 'x':
-          operator = '*';
-          displayNum.innerHTML = '';
-          break;
-        case '-':
-          operator = '-';
-          displayNum.innerHTML = '';
-          break;
-        case '+':
-          operator = '+';
-          displayNum.innerHTML = '';
-          break;
-        case '=':
-          displayNum.innerHTML = '';
-
-          break;
-      }
+    let input = event.target.innerHTML;
+    let inputId = event.target.id;
+    //if clear button pushed
+    if(inputId === 'clearButton'){
+      display.innerHTML = '';
+      runningNum = '';
+    //if back button pushed
+    }else if(inputId === 'backArrow' || inputId === 'backButton'){
+      display.innerHTML = display.innerHTML.substring(0, display.innerHTML.length - 1)
+      runningNum = runningNum.substring(0, runningNum.length -1)
+    //if devide, multiply, add, or subtract buttons pushed
+    }else if(inputId === 'devideButton' || inputId === 'timesButton' || inputId === 'minusButton' || inputId === 'plusButton'){
+      //insert function here that takes operator and runningNum
     }else{
-      displayNum.innerHTML += buttonContent;
-      runningTotal += buttonContent;
-      console.log(runningTotal)
+      display.innerHTML += input;
+      runningNum += input;
+      console.log(runningNum);
     }
   })
 })
