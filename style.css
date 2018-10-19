@@ -35,6 +35,7 @@ body{
   font-size: 60px;
   color: #05fff3;
   background-color: #002e2b;
+  border-color: black #002e2b #05fff3;
 }
 
 #calculatorContainer{
@@ -72,3 +73,7 @@ body{
 #minusButton{
   font-size: 80px;
 }
+
+ #backArrow{
+   margin-top: 14px;
+ }
