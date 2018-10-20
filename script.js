@@ -31,11 +31,36 @@ function operate(operator, a, b){
   }
 }
 
+function clearCalc(){
+  runningNum = '';
+  runningTotal = '';
+  operator = '';
+  firstNum = '';
+}
+
 
 let buttons = document.querySelectorAll('button');
 let display = document.getElementById('nums');
+let firstNum = '';
 let runningNum = '';
-let runningTotal = 0;
+let operator = '';
+let equalPushed = false;
+
+function operateChecker(operatorInput, num){
+  display.innerHTML = operatorInput;
+  if(equalPushed){
+    display.innerHTML = operate(operator, firstNum, num);
+    equalPushed = false;
+  }else if(firstNum === ''){
+    operator = operatorInput;
+    firstNum = num;
+  }else{
+    operator = operatorInput;
+    runningNum = (operate(operator, firstNum, num))
+    console.log(runningNum);
+  }
+}
+
 buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
     let input = event.target.innerHTML;
@@ -43,18 +68,31 @@ buttons.forEach((button) => {
     //if clear button pushed
     if(inputId === 'clearButton'){
       display.innerHTML = '';
-      runningNum = '';
+      clearCalc();
     //if back button pushed
     }else if(inputId === 'backArrow' || inputId === 'backButton'){
       display.innerHTML = display.innerHTML.substring(0, display.innerHTML.length - 1)
       runningNum = runningNum.substring(0, runningNum.length -1)
     //if devide, multiply, add, or subtract buttons pushed
-    }else if(inputId === 'devideButton' || inputId === 'timesButton' || inputId === 'minusButton' || inputId === 'plusButton'){
+  }else if(inputId === 'devideButton' || inputId === 'timesButton' || inputId === 'minusButton' || inputId === 'plusButton' || inputId === 'equalButton'){
+      if(inputId != 'equalButton'){
+        operator = input;
+      }else{
+        equalPushed = true;
+      }
       //insert function here that takes operator and runningNum
+      operateChecker(operator, runningNum);
+
+    //if numbers or decimal pushed
     }else{
+      if(display.innerHTML === '/'){
+        display.innerHTML = '';
+        runningNum = '';
+      }
       display.innerHTML += input;
       runningNum += input;
-      console.log(runningNum);
     }
   })
 })
+
+//done with basic features, need to add running calculator feature
