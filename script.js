@@ -11,10 +11,18 @@ function multiply(a,b){
 }
 
 function devide(a,b){
-  return a / b;
+  if(b === 0){
+    alert("Everything is Infinite Boy")
+    location.reload();
+  }else{
+    return a / b;
+  }
 }
 
 function operate(operator, a, b){
+  if(operator === 'x'){
+    operator = '*'
+  }
   switch(operator){
     case '+':
       return add(a, b);
@@ -44,20 +52,22 @@ let display = document.getElementById('nums');
 let firstNum = '';
 let runningNum = '';
 let operator = '';
+let lastOperator = '';
 let equalPushed = false;
 
 function operateChecker(operatorInput, num){
   display.innerHTML = operatorInput;
   if(equalPushed){
-    display.innerHTML = operate(operator, firstNum, num);
-    equalPushed = false;
+    if(operate(operatorInput, firstNum, num) % 1 === 0){
+      display.innerHTML = operate(operatorInput, firstNum, num);
+    }else{
+      display.innerHTML = operate(operatorInput, firstNum, num).toFixed(8);
+    }
   }else if(firstNum === ''){
     operator = operatorInput;
     firstNum = num;
   }else{
-    operator = operatorInput;
-    runningNum = (operate(operator, firstNum, num))
-    console.log(runningNum);
+    firstNum = (operate(lastOperator, firstNum, num));
   }
 }
 
@@ -65,6 +75,12 @@ buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
     let input = event.target.innerHTML;
     let inputId = event.target.id;
+    //if user would like to continue using calc after pressing equal
+    if(equalPushed){
+      display.innerHTML = '';
+      clearCalc();
+      equalPushed = false;
+    }
     //if clear button pushed
     if(inputId === 'clearButton'){
       display.innerHTML = '';
@@ -73,19 +89,18 @@ buttons.forEach((button) => {
     }else if(inputId === 'backArrow' || inputId === 'backButton'){
       display.innerHTML = display.innerHTML.substring(0, display.innerHTML.length - 1)
       runningNum = runningNum.substring(0, runningNum.length -1)
-    //if devide, multiply, add, or subtract buttons pushed
-  }else if(inputId === 'devideButton' || inputId === 'timesButton' || inputId === 'minusButton' || inputId === 'plusButton' || inputId === 'equalButton'){
-      if(inputId != 'equalButton'){
-        operator = input;
-      }else{
-        equalPushed = true;
-      }
-      //insert function here that takes operator and runningNum
-      operateChecker(operator, runningNum);
-
+    //if devide, multiply, add, or subtract, or equal buttons pushed
+    }else if(inputId === 'devideButton' || inputId === 'timesButton' || inputId === 'minusButton' || inputId === 'plusButton' || inputId === 'equalButton'){
+        if(inputId != 'equalButton'){
+          lastOperator = operator;
+          operator = input;
+        }else{
+          equalPushed = true;
+        }
+        operateChecker(operator, Number(runningNum));
     //if numbers or decimal pushed
     }else{
-      if(display.innerHTML === '/'){
+      if(display.innerHTML === '/' || display.innerHTML === '+' || display.innerHTML === '-' || display.innerHTML === 'x'){
         display.innerHTML = '';
         runningNum = '';
       }
@@ -94,5 +109,3 @@ buttons.forEach((button) => {
     }
   })
 })
-
-//done with basic features, need to add running calculator feature
