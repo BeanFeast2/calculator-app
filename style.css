@@ -81,3 +81,7 @@ body{
  #display{
    overflow: hidden;
  }
+
+ .button:hover{
+   background-color: black;
+ }
