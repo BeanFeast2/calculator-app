@@ -78,7 +78,7 @@ buttons.forEach((button) => {
     //if user would like to continue using calc after pressing equal
     if(equalPushed){
       display.innerHTML = '';
-      clearCalc();
+      //clearCalc();
       equalPushed = false;
     }
     //if clear button pushed
