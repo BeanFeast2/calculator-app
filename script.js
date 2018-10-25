@@ -104,8 +104,11 @@ buttons.forEach((button) => {
         display.innerHTML = '';
         runningNum = '';
       }
-      display.innerHTML += input;
-      runningNum += input;
+      //doesn't allow more than two decimal points to be inputted
+      if(!(runningNum.includes('.') && input === '.')){
+        runningNum += input;
+        display.innerHTML += input;
+      }
     }
   })
 })
