@@ -46,15 +46,6 @@ function clearCalc(){
   firstNum = '';
 }
 
-
-let buttons = document.querySelectorAll('button');
-let display = document.getElementById('nums');
-let firstNum = '';
-let runningNum = '';
-let operator = '';
-let lastOperator = '';
-let equalPushed = false;
-
 function operateChecker(operatorInput, num){
   display.innerHTML = operatorInput;
   if(equalPushed){
@@ -70,6 +61,14 @@ function operateChecker(operatorInput, num){
     firstNum = (operate(lastOperator, firstNum, num));
   }
 }
+
+let buttons = document.querySelectorAll('button');
+let display = document.getElementById('nums');
+let firstNum = '';
+let runningNum = '';
+let operator = '';
+let lastOperator = '';
+let equalPushed = false;
 
 buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
@@ -104,7 +103,7 @@ buttons.forEach((button) => {
         display.innerHTML = '';
         runningNum = '';
       }
-      //doesn't allow more than two decimal points to be inputted
+      //doesn't allow more than two decimal points to be input
       if(!(runningNum.includes('.') && input === '.')){
         runningNum += input;
         display.innerHTML += input;
